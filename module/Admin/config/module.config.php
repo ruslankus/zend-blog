@@ -6,7 +6,9 @@ return [
 
     'controllers' => [
         'invokables' => [
-            'Admin\Controller\Index' => 'Admin\Controller\IndexController'
+            'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+            'Category' => 'Admin\Controller\CategoryController',
+
         ]
     ],
 
@@ -25,8 +27,28 @@ return [
                         'action' => 'index'
                     ]
 
-                ]
-            ]
+                ],
+
+                'may_terminate' => true,
+
+                'child_routes' => [
+                    'category' => [
+
+                        'type' => 'segment',
+                        'options' => [
+                            'route' => 'category/[:action/][:id/]',
+                            'defaults' => [
+                                'controller' => 'Category',
+                                'action' => 'index'
+                            ]
+                        ]
+                    ]
+                ], //child_routes
+
+
+            ],
+
+
         ],
     ],
 
