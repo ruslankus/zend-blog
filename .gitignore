@@ -1,0 +1,15 @@
+.vagrant/
+vendor/
+config/development.config.php
+data/cache/*
+!data/cache/.gitkeep
+nbproject
+._*
+.~lock.*
+.buildpath
+.DS_Store
+.idea
+.project
+
+composer.lock
+
