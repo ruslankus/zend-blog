@@ -1,7 +1,8 @@
 version: '2'
 services:
-    mysql:
+    mysql-blog:
         image: mysql/mysql-server:5.6
+        network_mode: "bridge"
         ports:
             - "3306:3306"
         volumes:
@@ -11,17 +12,18 @@ services:
             MYSQL_USERNAME: root
             MYSQL_ROOT_PASSWORD: mysql
 
-    zend:
+    zend-blog:
         build: .
         environment:
-            XDEBUG_CONFIG: remote_host=192.168.1.4
+            XDEBUG_CONFIG: remote_host=192.168.1.13
         image: zend
+        network_mode: "bridge"
         depends_on:
-            - mysql
+            - mysql-blog
         ports:
             - "80:80"
         links:
-            - mysql:mysql
+            - mysql-blog:mysql-blog
         volumes:
             - "../:/var/www/site"
         restart: always

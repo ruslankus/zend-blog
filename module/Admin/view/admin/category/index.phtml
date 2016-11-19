@@ -1,1 +1,64 @@
-<h2>Category Controller</h2>
+<?php
+    $category = $this->category;
+
+    $flash = $this->flashMessenger();
+    $flash->getMessageOpenFormat(
+        "<div%s>
+            <button type='button' class='close' data-dismis='alert' area-hidden='true'>
+                &times;
+            </button>
+            <ul><li>
+    "
+    );
+
+    $flash->setMessageSeparatorString("</li><li>");
+    $flash->setMessageCloseString("</li></ul></div>");
+
+    echo $flash->render('error',['alert', 'alert-dismissable', 'alert-danger']);
+    echo $flash->render('error',['info', 'alert-dismissable', 'alert-danger']);
+    echo $flash->render('error',['default', 'alert-dismissable', 'alert-danger']);
+    echo $flash->render('error',['success', 'alert-dismissable', 'alert-danger']);
+?>
+<div class="row">
+
+    <div class="col-md-12">
+
+        <h2>Categories</h2>
+        <div>
+            <a href="<?=$this->url('admin/category',['action' => 'add'])?>"> Add category</a>
+        </div>
+
+        <table width="100%">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Key</th>
+                <th>Nane</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($category as $cat):?>
+            <tr>
+                <td><?php echo $cat->getId() ?></td>
+                <td><?php echo $cat->getCategoryKey() ?> </td>
+                <td><?php echo $cat->getCategoryName()  ?></td>
+                <td>
+
+                    <a href="<?php echo $this->url('admin/category', ['action' => 'edit', 'id' => $cat->getId()]) ?>">
+                        Edit
+                    </a>
+
+                    <a href="<?php echo $this->url('admin/category', ['action' => 'delete', 'id' => $cat->getId()]) ?>">
+                        Delete
+                    </a>
+
+                </td>
+            </tr>
+            <?php endforeach;?>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
