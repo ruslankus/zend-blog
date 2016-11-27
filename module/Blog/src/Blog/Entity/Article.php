@@ -190,4 +190,19 @@ class Article
     {
         return $this->category;
     }
+
+
+    public function getArticleForTable()
+    {
+        $article = strip_tags($this->getArticle());
+        $article = mb_substr($article, 0, 20,'UTF-8') . '...';
+        return $article;
+    }
+
+    public function getSnippetArticleTable()
+    {
+        $article = strip_tags($this->getShortArticle());
+        $article = substr($article, 0, 20) . '...';
+        return $article;
+    }
 }

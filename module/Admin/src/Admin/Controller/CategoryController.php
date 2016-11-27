@@ -129,4 +129,31 @@ class CategoryController extends AdminBaseController
 
     }
 
+    public function deleteAction()
+    {
+        $id = $this->params()->fromRoute('id', 0);
+        $em = $this->getEntityManager();
+
+        $status = 'success';
+        $message = 'Category was deleted';
+
+        try{
+            $repository = $em->getRepository('Blog\Entity\Category');
+            $category = $repository->find($id);
+            $em->remove($category);
+            $em->flush();
+
+        }catch (\Exception $e){
+            $status = 'error';
+            $message = 'Delete error: '. $e->getMessage();
+        }
+
+        $this->flashMessenger()
+            ->setNamespace($status)
+            ->addMessage($message);
+
+        $this->redirect()->toRoute('admin/category');
+    }
+
+
 }

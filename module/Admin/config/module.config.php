@@ -8,6 +8,7 @@ return [
         'invokables' => [
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Category' => 'Admin\Controller\CategoryController',
+            'Article' => 'Admin\Controller\ArticleController',
 
         ]
     ],
@@ -46,7 +47,23 @@ return [
                                 'action' => 'index'
                             ]
                         ]
+                    ],
+                    'article' => [
+
+                        'type' => 'segment',
+                        'options' => [
+                            'route' => 'article/[:action/][:id/]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]+',
+                            ),
+                            'defaults' => [
+                                'controller' => 'Article',
+                                'action' => 'index'
+                            ]
+                        ]
                     ]
+
                 ], //child_routes
 
 
@@ -61,6 +78,12 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
-    ]
+
+        'template_map' => [
+            'pagination_control' => __DIR__ . '/../view/layout/pagination_control.phtml'
+        ]
+    ],
+
+
 
 ];

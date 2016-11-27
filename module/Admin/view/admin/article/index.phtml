@@ -1,0 +1,61 @@
+<?php
+$articles;
+
+$flash = $this->flashMessenger();
+$flash->getMessageOpenFormat(
+    "<div%s>
+            <button type='button' class='close' data-dismis='alert' area-hidden='true'>
+                &times;
+            </button>
+            <ul><li>
+    "
+);
+
+$flash->setMessageSeparatorString("</li><li>");
+$flash->setMessageCloseString("</li></ul></div>");
+
+echo $flash->render('error',['alert', 'alert-dismissable', 'alert-danger']);
+echo $flash->render('info',['info', 'alert-dismissable', 'alert-info']);
+echo $flash->render('default',['default', 'alert-dismissable', 'alert-default']);
+echo $flash->render('success',['success', 'alert-dismissable', 'alert-success']);
+?>
+<h2>Articles Lists</h2>
+<a href="#">Add article</a>
+
+<table width="100%">
+
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Article</th>
+            <th>Title snippet</th>
+            <th>Edited</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        <?php foreach ($articles as $article):?>
+        <tr>
+            <td><?= $article->getId() ?></td>
+            <td><?= $article->getCategory()->getCategoryName() ?></td>
+            <td><?= $article->getTitle(); ?></td>
+            <td><?= $article->getArticleForTable() ?></td>
+            <td><?= $article->getSnippetArticleTable()  ?></td>
+            <td><?= !empty($article->getIsPublic())? 'Yes' : 'No' ?></td>
+            <td>
+                <a href="#">Edit</a>&nbsp;
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+
+</table>
+
+<p>
+    <?= $this->paginationControl($articles,'Sliding','pagination_control',['route' => 'admin/article']) ?>
+</p>

@@ -15,9 +15,9 @@
     $flash->setMessageCloseString("</li></ul></div>");
 
     echo $flash->render('error',['alert', 'alert-dismissable', 'alert-danger']);
-    echo $flash->render('error',['info', 'alert-dismissable', 'alert-danger']);
-    echo $flash->render('error',['default', 'alert-dismissable', 'alert-danger']);
-    echo $flash->render('error',['success', 'alert-dismissable', 'alert-danger']);
+    echo $flash->render('info',['info', 'alert-dismissable', 'alert-info']);
+    echo $flash->render('default',['default', 'alert-dismissable', 'alert-default']);
+    echo $flash->render('success',['success', 'alert-dismissable', 'alert-success']);
 ?>
 <div class="row">
 
