@@ -73,6 +73,72 @@ return [
         ],
     ],
 
+    'service_manager' => [
+
+        'factories' => [
+
+            'navigation'          => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'admin_navigation'    => 'Admin\Lib\AdminNavigationFactory'
+        ]
+    ],
+
+    'navigation' => [
+
+        'default' => [
+
+                ['label' => 'Main'],
+                ['route' => 'home']
+        ],
+
+        'admin_navigation' => [
+
+            [
+                'label'    => 'Control panel',
+                'route'    => 'admin',
+                'action'   => 'index',
+                'resource' => 'Admin\Controller\Index',
+
+                'pages'    => [
+
+                    [
+                        'label'   => 'Articles',
+                        'route'   => 'admin/article',
+                        'action'  => 'index'
+                    ],
+
+                    [
+                        'label'   => 'Add article',
+                        'route'   => 'admin/article',
+                        'action'  => 'add'
+                    ],
+
+                    [
+                        'label'   => 'Category',
+                        'route'   => 'admin/category',
+                        'action'  => 'index'
+                    ],
+
+                    [
+                        'label'   => 'Add category',
+                        'route'   => 'admin/category',
+                        'action'  => 'add'
+                    ],
+
+                    /*
+                    [
+                        'label'   => 'Comments',
+                        'route'   => 'admin/comment',
+                        'action'  => 'index'
+                    ]
+                    */
+
+
+                ]
+            ]
+        ]
+
+    ],
+
     'view_manager' => [
 
         'template_path_stack' => [

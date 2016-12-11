@@ -20,7 +20,7 @@ echo $flash->render('default',['default', 'alert-dismissable', 'alert-default'])
 echo $flash->render('success',['success', 'alert-dismissable', 'alert-success']);
 ?>
 <h2>Articles Lists</h2>
-<a href="#">Add article</a>
+<a href="<?=$this->url('admin/article',['action' => 'add'])?>"> Add aticle</a>
 
 <table width="100%">
 
@@ -47,8 +47,12 @@ echo $flash->render('success',['success', 'alert-dismissable', 'alert-success'])
             <td><?= $article->getSnippetArticleTable()  ?></td>
             <td><?= !empty($article->getIsPublic())? 'Yes' : 'No' ?></td>
             <td>
-                <a href="#">Edit</a>&nbsp;
-                <a href="#">Delete</a>
+                <a href="<?= $this->url('admin/article',['action' => 'edit', 'id' => $article->getId()]) ?>">
+                    Edit
+                </a>&nbsp;
+                <a href="<?= $this->url('admin/article',['action' => 'delete', 'id' => $article->getId()]) ?>">
+                    Delete
+                </a>
             </td>
         </tr>
         <?php endforeach;?>
