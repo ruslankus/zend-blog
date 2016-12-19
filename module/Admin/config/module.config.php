@@ -86,8 +86,10 @@ return [
 
         'default' => [
 
-                ['label' => 'Main'],
-                ['route' => 'home']
+            [
+                'label' => 'Main',
+                'route' => 'home'
+            ]
         ],
 
         'admin_navigation' => [
@@ -149,6 +151,10 @@ return [
             'pagination_control' => __DIR__ . '/../view/layout/pagination_control.phtml'
         ]
     ],
+
+    'module_layouts' => [
+        'Admin' => 'layout/admin-layout'
+    ]
 
 
 

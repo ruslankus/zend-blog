@@ -1,7 +1,33 @@
+<?php foreach ($articles as $article):
+    $url = $this->url('blog', ['action' => 'article', 'id' => $article->getId() ])
+?>
+<article class="panel panel-default">
+    <div class="page-header" style="margin-top: 17px">
+        <h4 style="padding-left: 30px; font-size: 25px">
 
-<div class="row">
-    <div class="col-md-12">
-        <h2>Blog Module</h2>
+            <a style="color: black" href="<?= $url ?>" >
+                <?= $article->getTitle() ?>
+            </a>
+        </h4>
+
+        <div class="panel-body">
+            <?= $article->getShortArticle() ?>
+        </div>
     </div>
+    <div class="panel-footer" style="height: 45px">
+        <div style="width: 300px; float: left">
+            <?php $category = $article->getCategory(); ?>
+            Category: <?= $category->getCategoryName()  ?>
+        </div>
 
-</div>
+        <span style="float: right;">
+            <a href="<?= $url?>">Read more...</a>
+        </span>
+    </div>
+</article>
+<?php endforeach;?>
+
+<?= $this->paginationControl($articles , 'Sliding','pagination_control',['route' => 'blog'] ) ?>
+
+
+

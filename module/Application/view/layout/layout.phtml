@@ -40,22 +40,18 @@
 
 
                     <?php
-                        $navigation = $this->navigation('admin_navigation');
-
+                        $navigation = $this->navigation('navigation');
                         $menu = $navigation->menu();
                         $menu->setUlClass('nav navbar-nav');
-
-
+                        echo $menu;
                     ?>
-
-                    <?= $menu->renderSubMenu() ?>
 
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
         <div class="container">
             <br><br>
-            <?= $navigation->breadcrumbs(); ?>
+            <?php  echo $navigation->breadcrumbs(); ?>
 
             <?php echo $this->content; ?>
             <hr>
